@@ -36,7 +36,7 @@ export const users: User[] = [
 export const posts: Post[] = [
   {
     id: "p1",
-    createdAt: "2025-05-19T09:00:00Z",
+    createdAt: "2025-05-18T09:00:00Z",
     content: "Hello Threads! Excited to join.",
     user_id: "u1",
     user: users[0],
@@ -46,7 +46,7 @@ export const posts: Post[] = [
   },
   {
     id: "p2",
-    createdAt: "2025-05-19T09:05:00Z",
+    createdAt: "2025-05-18T09:05:00Z",
     content: "Welcome, Alice! Glad to have you here.",
     user_id: "u2",
     user: users[1],
@@ -56,7 +56,7 @@ export const posts: Post[] = [
   },
   {
     id: "p3",
-    createdAt: "2025-05-19T09:10:00Z",
+    createdAt: "2025-05-18T09:10:00Z",
     content: "Hey everyone! What's up?",
     user_id: "u3",
     user: users[2],
@@ -66,7 +66,7 @@ export const posts: Post[] = [
   },
   {
     id: "p4",
-    createdAt: "2025-05-19T09:15:00Z",
+    createdAt: "2025-05-18T09:15:00Z",
     content: "Just enjoying some coffee ☕️",
     user_id: "u1",
     user: users[0],
@@ -76,7 +76,7 @@ export const posts: Post[] = [
   },
   {
     id: "p5",
-    createdAt: "2025-05-19T09:20:00Z",
+    createdAt: "2025-05-17T09:20:00Z",
     content: "Same here! Any good music recommendations?",
     user_id: "u4",
     user: users[3],
@@ -86,7 +86,7 @@ export const posts: Post[] = [
   },
   {
     id: "p6",
-    createdAt: "2025-05-19T09:25:00Z",
+    createdAt: "2025-05-15T09:25:00Z",
     content: "Try the new indie playlist on Spotify.",
     user_id: "u4",
     user: users[3],
@@ -96,7 +96,7 @@ export const posts: Post[] = [
   },
   {
     id: "p7",
-    createdAt: "2025-05-19T09:30:00Z",
+    createdAt: "2025-05-12T09:30:00Z",
     content: "Anyone into photography?",
     user_id: "u3",
     user: users[2],
@@ -106,7 +106,7 @@ export const posts: Post[] = [
   },
   {
     id: "p8",
-    createdAt: "2025-05-19T09:35:00Z",
+    createdAt: "2025-05-10T09:35:00Z",
     content: "I love taking landscape shots!",
     user_id: "u5",
     user: users[4],
@@ -116,7 +116,7 @@ export const posts: Post[] = [
   },
   {
     id: "p9",
-    createdAt: "2025-05-19T09:40:00Z",
+    createdAt: "2025-05-12T09:40:00Z",
     content: "Show us your best photo, Carol!",
     user_id: "u2",
     user: users[1],
@@ -126,7 +126,7 @@ export const posts: Post[] = [
   },
   {
     id: "p10",
-    createdAt: "2025-05-19T09:45:00Z",
+    createdAt: "2025-05-12T09:45:00Z",
     content: "Here's one from my last trip to Iceland.",
     user_id: "u3",
     user: users[2],
@@ -136,7 +136,7 @@ export const posts: Post[] = [
   },
   {
     id: "p11",
-    createdAt: "2025-05-19T09:50:00Z",
+    createdAt: "2024-05-18T09:50:00Z",
     content: "Wow, that's stunning!",
     user_id: "u1",
     user: users[0],
@@ -146,7 +146,7 @@ export const posts: Post[] = [
   },
   {
     id: "p12",
-    createdAt: "2025-05-19T09:55:00Z",
+    createdAt: "2024-05-18T09:55:00Z",
     content: "Anyone here into blogging?",
     user_id: "u5",
     user: users[4],
@@ -156,7 +156,7 @@ export const posts: Post[] = [
   },
   {
     id: "p13",
-    createdAt: "2025-05-19T10:00:00Z",
+    createdAt: "2024-05-18T10:00:00Z",
     content: "I write about tech trends!",
     user_id: "u5",
     user: users[4],
@@ -166,7 +166,7 @@ export const posts: Post[] = [
   },
   {
     id: "p14",
-    createdAt: "2025-05-19T10:05:00Z",
+    createdAt: "2024-05-18T10:05:00Z",
     content: "Share your blog link, Eve!",
     user_id: "u2",
     user: users[1],
@@ -176,7 +176,7 @@ export const posts: Post[] = [
   },
   {
     id: "p15",
-    createdAt: "2025-05-19T10:10:00Z",
+    createdAt: "2024-05-18T10:10:00Z",
     content: "Sure! Check out techwitheve.com",
     user_id: "u5",
     user: users[4],
