@@ -4,8 +4,8 @@ import React from "react";
 
 export default function HomeScreen() {
   return (
-    <View>
-      <Text>HomeScreen</Text>
+    <View className="flex items-center justify-center h-full">
+      <Text className="text-red-400 text-3xl">HomeScreen</Text>
     </View>
   );
 }
