@@ -1,11 +1,10 @@
 import { View, Text } from "react-native";
 import React from "react";
-// import "./global.css";
 
-export default function App() {
+export default function ProfileScreen() {
   return (
     <View>
-      <Text>App</Text>
+      <Text>ProfileScreen</Text>
     </View>
   );
 }
