@@ -1,0 +1,197 @@
+import { User, Post } from "./types";
+
+export const users: User[] = [
+  {
+    id: "u1",
+    username: "alice",
+    bio: "Coffee lover. Cat person.",
+    image: "https://randomuser.me/api/portraits/women/1.jpg",
+  },
+  {
+    id: "u2",
+    username: "bob",
+    bio: "Full-stack dev & gamer.",
+    image: "https://randomuser.me/api/portraits/men/2.jpg",
+  },
+  {
+    id: "u3",
+    username: "carol",
+    bio: "Photographer & traveler.",
+    image: "https://randomuser.me/api/portraits/women/3.jpg",
+  },
+  {
+    id: "u4",
+    username: "dave",
+    bio: "Music enthusiast.",
+    image: "https://randomuser.me/api/portraits/men/4.jpg",
+  },
+  {
+    id: "u5",
+    username: "eve",
+    bio: "Tech blogger.",
+    image: "https://randomuser.me/api/portraits/women/5.jpg",
+  },
+];
+
+export const posts: Post[] = [
+  {
+    id: "p1",
+    createdAt: "2025-05-19T09:00:00Z",
+    content: "Hello Threads! Excited to join.",
+    user_id: "u1",
+    user: users[0],
+    parent_id: null,
+    parent: null,
+    replies: [],
+  },
+  {
+    id: "p2",
+    createdAt: "2025-05-19T09:05:00Z",
+    content: "Welcome, Alice! Glad to have you here.",
+    user_id: "u2",
+    user: users[1],
+    parent_id: "p1",
+    parent: null, // Will be set later
+    replies: [],
+  },
+  {
+    id: "p3",
+    createdAt: "2025-05-19T09:10:00Z",
+    content: "Hey everyone! What's up?",
+    user_id: "u3",
+    user: users[2],
+    parent_id: null,
+    parent: null,
+    replies: [],
+  },
+  {
+    id: "p4",
+    createdAt: "2025-05-19T09:15:00Z",
+    content: "Just enjoying some coffee ☕️",
+    user_id: "u1",
+    user: users[0],
+    parent_id: "p3",
+    parent: null,
+    replies: [],
+  },
+  {
+    id: "p5",
+    createdAt: "2025-05-19T09:20:00Z",
+    content: "Same here! Any good music recommendations?",
+    user_id: "u4",
+    user: users[3],
+    parent_id: "p3",
+    parent: null,
+    replies: [],
+  },
+  {
+    id: "p6",
+    createdAt: "2025-05-19T09:25:00Z",
+    content: "Try the new indie playlist on Spotify.",
+    user_id: "u4",
+    user: users[3],
+    parent_id: "p5",
+    parent: null,
+    replies: [],
+  },
+  {
+    id: "p7",
+    createdAt: "2025-05-19T09:30:00Z",
+    content: "Anyone into photography?",
+    user_id: "u3",
+    user: users[2],
+    parent_id: null,
+    parent: null,
+    replies: [],
+  },
+  {
+    id: "p8",
+    createdAt: "2025-05-19T09:35:00Z",
+    content: "I love taking landscape shots!",
+    user_id: "u5",
+    user: users[4],
+    parent_id: "p7",
+    parent: null,
+    replies: [],
+  },
+  {
+    id: "p9",
+    createdAt: "2025-05-19T09:40:00Z",
+    content: "Show us your best photo, Carol!",
+    user_id: "u2",
+    user: users[1],
+    parent_id: "p7",
+    parent: null,
+    replies: [],
+  },
+  {
+    id: "p10",
+    createdAt: "2025-05-19T09:45:00Z",
+    content: "Here's one from my last trip to Iceland.",
+    user_id: "u3",
+    user: users[2],
+    parent_id: "p9",
+    parent: null,
+    replies: [],
+  },
+  {
+    id: "p11",
+    createdAt: "2025-05-19T09:50:00Z",
+    content: "Wow, that's stunning!",
+    user_id: "u1",
+    user: users[0],
+    parent_id: "p10",
+    parent: null,
+    replies: [],
+  },
+  {
+    id: "p12",
+    createdAt: "2025-05-19T09:55:00Z",
+    content: "Anyone here into blogging?",
+    user_id: "u5",
+    user: users[4],
+    parent_id: null,
+    parent: null,
+    replies: [],
+  },
+  {
+    id: "p13",
+    createdAt: "2025-05-19T10:00:00Z",
+    content: "I write about tech trends!",
+    user_id: "u5",
+    user: users[4],
+    parent_id: "p12",
+    parent: null,
+    replies: [],
+  },
+  {
+    id: "p14",
+    createdAt: "2025-05-19T10:05:00Z",
+    content: "Share your blog link, Eve!",
+    user_id: "u2",
+    user: users[1],
+    parent_id: "p13",
+    parent: null,
+    replies: [],
+  },
+  {
+    id: "p15",
+    createdAt: "2025-05-19T10:10:00Z",
+    content: "Sure! Check out techwitheve.com",
+    user_id: "u5",
+    user: users[4],
+    parent_id: "p14",
+    parent: null,
+    replies: [],
+  },
+];
+
+// Link parent and replies
+const postMap: { [id: string]: Post } = {};
+posts.forEach((post) => (postMap[post.id] = post));
+posts.forEach((post) => {
+  if (post.parent_id) {
+    post.parent = postMap[post.parent_id];
+    postMap[post.parent_id].replies.push(post);
+  }
+});
