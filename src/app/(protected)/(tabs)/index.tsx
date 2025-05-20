@@ -13,7 +13,7 @@ export default function HomeScreen() {
         }}
         ListFooterComponent={() => (
           <Link
-            href="/new"
+            href="/(auth)/login"
             className="text-blue-300 bg-blue-300 p-4 text-center text-3xl"
           >
             New Post
