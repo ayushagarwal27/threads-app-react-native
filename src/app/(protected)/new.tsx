@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 
+//OODzHDfl1T7q8x7f
+
 export default function NewPostScreen() {
   const [text, setText] = useState("");
   return (
