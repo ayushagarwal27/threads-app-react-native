@@ -1,10 +1,38 @@
+import { supabase } from "@/lib/supabase";
 import { router } from "expo-router";
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 
 export default function SignUpScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSignUp = async () => {
+    if (!email || !password) {
+      Alert.alert("Please enter an email and password");
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.signUp({ email, password });
+
+      if (error) Alert.alert(error.message);
+
+      if (!session)
+        Alert.alert("Please check your inbox for email verification!");
+    } catch (error) {
+      console.error("Login error:", error);
+      // TODO: Add proper error handling
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <View className="flex-1 justify-center items-center bg-white dark:bg-black px-6">
@@ -38,11 +66,11 @@ export default function SignUpScreen() {
         <TouchableOpacity
           className="bg-black dark:bg-white rounded-md py-3 mb-4"
           onPress={() => {
-            /* handle login */
+            handleSignUp();
           }}
         >
           <Text className="text-white dark:text-black text-center font-semibold text-base">
-            Sign Up
+            {isLoading ? "Logging in..." : "Sign up"}
           </Text>
         </TouchableOpacity>
         <View className="flex-row justify-center">

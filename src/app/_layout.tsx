@@ -2,6 +2,7 @@ import React from "react";
 import { Slot } from "expo-router";
 import { DarkTheme, ThemeProvider } from "@react-navigation/native";
 import "../../global.css";
+import { AuthProvider } from "@/providers/AuthProvider";
 
 const myTheme = {
   ...DarkTheme,
@@ -15,7 +16,9 @@ const myTheme = {
 export default function RootLayout() {
   return (
     <ThemeProvider value={myTheme}>
-      <Slot />
+      <AuthProvider>
+        <Slot />
+      </AuthProvider>
     </ThemeProvider>
   );
 }
