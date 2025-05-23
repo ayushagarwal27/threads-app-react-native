@@ -10,11 +10,12 @@ export default function PostListItem({ post }: { post: Post }) {
   return (
     <View className="flex-row px-4 py-3 border-b border-gray-800/70">
       {/* Avatar */}
-      <Image
-        source={{ uri: post.user.image }}
-        className="w-11 h-11 rounded-full mt-1"
-      />
-
+      {post.user.avatar_url && (
+        <Image
+          source={{ uri: post.user.avatar_url }}
+          className="w-11 h-11 rounded-full mt-1"
+        />
+      )}
       {/* Main content */}
       <View className="flex-1 ml-3">
         {/* Header: username, @username, time */}
@@ -36,7 +37,7 @@ export default function PostListItem({ post }: { post: Post }) {
           <Pressable className="flex-row items-center gap-1">
             {/* Message bubble for replies */}
             <Feather name="message-circle" size={20} color="gray" />
-            <Text className="text-gray-400 text-xs">{post.replies.length}</Text>
+            {/* <Text className="text-gray-400 text-xs">{post.replies.length}</Text> */}
           </Pressable>
           <Pressable className="flex-row items-center gap-1">
             {/* Repeat for repost */}

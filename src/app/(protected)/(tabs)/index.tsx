@@ -1,9 +1,25 @@
 import { FlatList } from "react-native";
-import { posts } from "@/dummyData";
 import PostListItem from "@/components/PostListItem";
 import { Link } from "expo-router";
+import { useEffect, useState } from "react";
+import { Post } from "@/types";
+import { supabase } from "@/lib/supabase";
 
 export default function HomeScreen() {
+  const [posts, setPosts] = useState<Post[] | null>(null);
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const { data, error } = await supabase
+        .from("posts")
+        .select("*, user:profiles(*)");
+      setPosts(data);
+    }
+    fetchPosts();
+  }, []);
+
+  // console.log(JSON.stringify(posts, null, 2));
+
   return (
     <>
       <FlatList
