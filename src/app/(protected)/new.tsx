@@ -10,25 +10,35 @@ import {
 import React, { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/providers/AuthProvider";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { User } from "@/types";
+import { router } from "expo-router";
 
-//OODzHDfl1T7q8x7f
+async function createPost(content: string, user: User | null) {
+  const { data } = await supabase
+    .from("posts")
+    .insert({ content, user_id: user?.id })
+    .select("*")
+    .throwOnError();
+
+  return data;
+}
 
 export default function NewPostScreen() {
   const [text, setText] = useState("");
-
   const { user } = useAuth();
 
-  const onSubmit = async () => {
-    if (!text || !user) return;
+  const queryClient = useQueryClient();
 
-    const { data, error } = await supabase
-      .from("posts")
-      .insert({ content: text, user_id: user?.id });
+  const { mutate, isPending } = useMutation({
+    mutationFn: () => createPost(text, user as User | null),
+    onSuccess: () => {
+      setText("");
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
+      router.back();
+    },
+  });
 
-    if (error) {
-      console.log(error);
-    }
-  };
   return (
     <SafeAreaView className="p-4 flex-1">
       <KeyboardAvoidingView
@@ -48,8 +58,11 @@ export default function NewPostScreen() {
         />
         <View className="mt-auto">
           <Pressable
-            onPress={onSubmit}
-            className="bg-white p-4 self-end rounded-full"
+            onPress={() => mutate()}
+            className={`${
+              isPending ? "bg-white/50" : "bg-white"
+            }  p-4 self-end rounded-full`}
+            disabled={isPending}
           >
             <Text className="">Post</Text>
           </Pressable>
