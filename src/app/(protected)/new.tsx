@@ -37,6 +37,9 @@ export default function NewPostScreen() {
       queryClient.invalidateQueries({ queryKey: ["posts"] });
       router.back();
     },
+    onError: (error) => {
+      console.error(error);
+    },
   });
 
   return (

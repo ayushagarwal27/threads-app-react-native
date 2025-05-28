@@ -1,4 +1,4 @@
-import { Tabs } from "expo-router";
+import { router, Tabs } from "expo-router";
 import Feather from "@expo/vector-icons/Feather";
 
 export default function TabsLayout() {
@@ -26,7 +26,21 @@ export default function TabsLayout() {
           ),
         }}
       />
-
+      <Tabs.Screen
+        name="plus"
+        options={{
+          title: "Plus",
+          tabBarIcon: ({ size, color }) => (
+            <Feather name="plus" size={size} color={color} />
+          ),
+        }}
+        listeners={{
+          tabPress: (e) => {
+            e.preventDefault();
+            router.push("/new");
+          },
+        }}
+      />
       <Tabs.Screen
         name="notifcations"
         options={{

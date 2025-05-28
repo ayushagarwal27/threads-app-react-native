@@ -35,14 +35,6 @@ export default function HomeScreen() {
         renderItem={({ item }) => {
           return <PostListItem post={item} />;
         }}
-        ListFooterComponent={() => (
-          <Link
-            href="/new"
-            className="text-blue-300 bg-blue-300 p-4 text-center text-3xl"
-          >
-            New Post
-          </Link>
-        )}
       />
     </>
   );
