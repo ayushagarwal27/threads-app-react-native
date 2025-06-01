@@ -8,21 +8,11 @@ import {
   Platform,
 } from "react-native";
 import React, { useState } from "react";
-import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/providers/AuthProvider";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { User } from "@/types";
 import { router } from "expo-router";
-
-async function createPost(content: string, user: User | null) {
-  const { data } = await supabase
-    .from("posts")
-    .insert({ content, user_id: user?.id })
-    .select("*")
-    .throwOnError();
-
-  return data;
-}
+import { createPost } from "@/services/post";
 
 export default function NewPostScreen() {
   const [text, setText] = useState("");

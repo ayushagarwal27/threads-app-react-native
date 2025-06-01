@@ -1,0 +1,37 @@
+import { supabase } from "@/lib/supabase";
+import { User } from "@/types";
+
+export async function createPost(
+  content: string,
+  user: User | null,
+  parent_id?: string
+) {
+  const { data } = await supabase
+    .from("posts")
+    .insert({ content, user_id: user?.id, parent_id })
+    .select("*")
+    .throwOnError();
+
+  return data;
+}
+
+export async function getPostById(id: string) {
+  const data = await supabase
+    .from("posts")
+    .select("*, user:profiles(*)")
+    .eq("id", id)
+    .single()
+    .throwOnError();
+
+  return data;
+}
+
+export async function getPostReplies(parent_id: string) {
+  const data = await supabase
+    .from("posts")
+    .select("*, user:profiles(*)")
+    .eq("parent_id", parent_id)
+    .throwOnError();
+
+  return data;
+}
