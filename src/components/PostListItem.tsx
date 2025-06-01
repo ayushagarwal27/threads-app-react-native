@@ -7,7 +7,7 @@ import { Link } from "expo-router";
 
 dayjs.extend(relativeTime);
 
-export default function PostListItem({ post }: { post: Post }) {
+export default function PostListItem({ post }: { post: any }) {
   return (
     <Link href={`/posts/${post.id}`} asChild>
       <Pressable className="flex-row px-4 py-3 border-b border-gray-800/70">
@@ -41,6 +41,9 @@ export default function PostListItem({ post }: { post: Post }) {
             <Pressable className="flex-row items-center gap-1">
               {/* Message bubble for replies */}
               <Feather name="message-circle" size={20} color="gray" />
+              <Text className="text-gray-400 text-xs">
+                {(post?.replies && post?.replies[0]?.count) || 0}
+              </Text>
               {/* <Text className="text-gray-400 text-xs">{post.replies.length}</Text> */}
             </Pressable>
             <Pressable className="flex-row items-center gap-1">

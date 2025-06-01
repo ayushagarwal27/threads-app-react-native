@@ -1,16 +1,7 @@
 import { ActivityIndicator, FlatList } from "react-native";
 import PostListItem from "@/components/PostListItem";
-import { Link } from "expo-router";
-import { supabase } from "@/lib/supabase";
 import { useQuery } from "@tanstack/react-query";
-
-async function fetchPosts() {
-  const { data } = await supabase
-    .from("posts")
-    .select("*, user:profiles(*)")
-    .throwOnError();
-  return data;
-}
+import { fetchPosts } from "@/services/post";
 
 export default function HomeScreen() {
   const {

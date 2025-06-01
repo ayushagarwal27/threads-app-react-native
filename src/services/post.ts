@@ -1,6 +1,14 @@
 import { supabase } from "@/lib/supabase";
 import { User } from "@/types";
 
+export async function fetchPosts() {
+  const { data } = await supabase
+    .from("posts")
+    .select("*, user:profiles(*), replies:posts(count)")
+    .throwOnError();
+  return data;
+}
+
 export async function createPost(
   content: string,
   user: User | null,
@@ -18,7 +26,7 @@ export async function createPost(
 export async function getPostById(id: string) {
   const data = await supabase
     .from("posts")
-    .select("*, user:profiles(*)")
+    .select("*, user:profiles(*), replies:posts(count)")
     .eq("id", id)
     .single()
     .throwOnError();
@@ -29,7 +37,7 @@ export async function getPostById(id: string) {
 export async function getPostReplies(parent_id: string) {
   const data = await supabase
     .from("posts")
-    .select("*, user:profiles(*)")
+    .select("*, user:profiles(*), replies:posts(count)")
     .eq("parent_id", parent_id)
     .throwOnError();
 

@@ -16,7 +16,7 @@ export default function PostReplyInput({ postId }: { postId: string }) {
     mutationFn: () => createPost(replyText, user as User | null, postId),
     onSuccess: () => {
       setReplyText("");
-      queryClient.invalidateQueries({ queryKey: ["posts", postId, "replies"] });
+      queryClient.invalidateQueries({ queryKey: ["posts"] });
     },
     onError: (error) => {
       console.error(error);
