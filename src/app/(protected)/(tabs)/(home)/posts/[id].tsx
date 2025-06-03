@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import PostListItem from "@/components/PostListItem";
 import PostReplyInput from "@/components/PostReplyInput";
 import { getPostById, getPostReplies } from "@/services/post";
+import PostDetails from "@/components/PostDetails";
 
 export default function PostDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -44,7 +45,14 @@ export default function PostDetailsScreen() {
       <FlatList
         data={replies?.data}
         renderItem={({ item }) => <PostListItem post={item} />}
-        ListHeaderComponent={<PostListItem post={post?.data} />}
+        ListHeaderComponent={
+          <>
+            <PostDetails post={post?.data} />
+            <Text className="text-white text-lg font-bold p-4 border-b border-neutral-800">
+              Replies
+            </Text>
+          </>
+        }
       />
       <PostReplyInput postId={id} />
     </View>
