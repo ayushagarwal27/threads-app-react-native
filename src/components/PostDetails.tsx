@@ -17,11 +17,15 @@ export default function PostDetails({ post }: { post: any }) {
         <View className="flex-1  gap-2">
           {/* Header: username, @username, time */}
           <View className="flex-row gap-3 items-center">
-            {post.user.avatar_url && (
+            {post.user.avatar_url ? (
               <Image
                 source={{ uri: post.user.avatar_url }}
-                className="w-11 h-11 rounded-full"
+                className="w-11 h-11 rounded-full mt-1"
               />
+            ) : (
+              <View className="w-11 h-11 rounded-full mt-1 flex bg-blue-300 items-center justify-center">
+                <Text className="text-black text-xl">A</Text>
+              </View>
             )}
             <View className="flex-row">
               <Text className="text-white font-semibold">

@@ -7,17 +7,36 @@ import { Link } from "expo-router";
 
 dayjs.extend(relativeTime);
 
-export default function PostListItem({ post }: { post: any }) {
+export default function PostListItem({
+  post,
+  isLastInGroup = true,
+}: {
+  post: any;
+  isLastInGroup?: boolean;
+}) {
   return (
     <Link href={`/posts/${post.id}`} asChild>
-      <Pressable className="flex-row px-4 py-3 border-b border-gray-800/70">
+      <Pressable
+        className={`flex-row px-4 py-3 ${
+          isLastInGroup ? "border-b border-gray-800/70" : ""
+        }`}
+      >
         {/* Avatar */}
-        {post.user.avatar_url && (
-          <Image
-            source={{ uri: post.user.avatar_url }}
-            className="w-11 h-11 rounded-full mt-1"
-          />
-        )}
+        <View>
+          {post.user.avatar_url ? (
+            <Image
+              source={{ uri: post.user.avatar_url }}
+              className="w-11 h-11 rounded-full mt-1"
+            />
+          ) : (
+            <View className="w-11 h-11 rounded-full mt-1 flex bg-blue-300 items-center justify-center">
+              <Text className="text-black text-xl">A</Text>
+            </View>
+          )}
+          {!isLastInGroup && (
+            <View className="top-0 left-1/2 bottom-0 w-[0.3px] flex-1 bg-gray-400 translate-y-2 scale-150"></View>
+          )}
+        </View>
         {/* Main content */}
         <View className="flex-1 ml-3">
           {/* Header: username, @username, time */}

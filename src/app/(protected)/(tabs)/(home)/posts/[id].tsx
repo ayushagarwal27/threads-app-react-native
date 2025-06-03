@@ -19,6 +19,16 @@ export default function PostDetailsScreen() {
   });
 
   const {
+    data: parentPost,
+    isLoading: isLoadingParentPost,
+    error: parentPostError,
+  } = useQuery({
+    queryKey: ["posts", post?.data?.parent_id],
+    queryFn: () => getPostById(post?.data.parent_id || ""),
+    enabled: !!post?.data?.parent_id,
+  });
+
+  const {
     data: replies,
     isLoading: isLoadingReplies,
     error,
@@ -27,7 +37,7 @@ export default function PostDetailsScreen() {
     queryFn: () => getPostReplies(id),
   });
 
-  // console.log(replies);
+  console.log(parentPost);
 
   if (isLoadingPost || isLoadingReplies) {
     return <ActivityIndicator />;
@@ -47,6 +57,9 @@ export default function PostDetailsScreen() {
         renderItem={({ item }) => <PostListItem post={item} />}
         ListHeaderComponent={
           <>
+            {parentPost && (
+              <PostListItem post={parentPost.data} isLastInGroup={false} />
+            )}
             <PostDetails post={post?.data} />
             <Text className="text-white text-lg font-bold p-4 border-b border-neutral-800">
               Replies
