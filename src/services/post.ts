@@ -18,6 +18,7 @@ export async function createPost(
     .from("posts")
     .insert({ content, user_id: user?.id, parent_id })
     .select("*")
+    .order("created_at", { ascending: false })
     .throwOnError();
 
   return data;
