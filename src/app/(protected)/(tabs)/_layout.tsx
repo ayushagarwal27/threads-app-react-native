@@ -58,6 +58,7 @@ export default function TabsLayout() {
           tabBarIcon: ({ size, color }) => (
             <Feather name="user" size={size} color={color} />
           ),
+          headerShown: false,
         }}
       />
     </Tabs>

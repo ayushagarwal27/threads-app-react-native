@@ -1,6 +1,5 @@
 import { View, Text, ActivityIndicator, FlatList } from "react-native";
 import React from "react";
-import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import { getPostsByUserId } from "@/services/post";
