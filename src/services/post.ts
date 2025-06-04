@@ -36,6 +36,16 @@ export async function getPostById(id: string) {
   return data;
 }
 
+export async function getPostsByUserId(id: string) {
+  const data = await supabase
+    .from("posts")
+    .select("*, user:profiles(*), replies:posts(count)")
+    .eq("user_id", id)
+    .throwOnError();
+
+  return data;
+}
+
 export async function getPostReplies(parent_id: string) {
   const data = await supabase
     .from("posts")
