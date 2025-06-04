@@ -4,6 +4,7 @@ import { Feather, Ionicons } from "@expo/vector-icons";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Link } from "expo-router";
+import { supabase } from "@/lib/supabase";
 
 dayjs.extend(relativeTime);
 
@@ -42,6 +43,23 @@ export default function PostDetails({ post }: { post: any }) {
 
           {/* Content */}
           <Text className="text-white ml-1 text-[15px]">{post.content}</Text>
+
+          {post.images && (
+            <View className="flex-row gap-2 mt-2">
+              {post.images.map((img: string) => {
+                return (
+                  <Image
+                    key={img}
+                    source={{
+                      uri: supabase.storage.from("media").getPublicUrl(img).data
+                        .publicUrl,
+                    }}
+                    className="w-full aspect-square rounded-lg"
+                  />
+                );
+              })}
+            </View>
+          )}
 
           {/* Actions */}
           <View className="flex-row gap-4  max-w-[80%]">

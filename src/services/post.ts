@@ -12,11 +12,12 @@ export async function fetchPosts() {
 export async function createPost(
   content: string,
   user: User | null,
-  parent_id?: string
+  parent_id?: string,
+  images?: string[]
 ) {
   const { data } = await supabase
     .from("posts")
-    .insert({ content, user_id: user?.id, parent_id })
+    .insert({ content, user_id: user?.id, parent_id, images })
     .select("*")
     .order("created_at", { ascending: false })
     .throwOnError();

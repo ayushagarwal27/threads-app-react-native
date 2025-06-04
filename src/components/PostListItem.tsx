@@ -4,6 +4,7 @@ import { Feather, Ionicons } from "@expo/vector-icons";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Link } from "expo-router";
+import { supabase } from "@/lib/supabase";
 
 dayjs.extend(relativeTime);
 
@@ -34,7 +35,7 @@ export default function PostListItem({
             </View>
           )}
           {!isLastInGroup && (
-            <View className="top-0 left-1/2 bottom-0 w-[0.3px] flex-1 bg-gray-400 translate-y-2 scale-150"></View>
+            <View className="top-0 left-1/2 bottom-0 w-[0.3px] flex-1 bg-gray-400 translate-y-2 "></View>
           )}
         </View>
         {/* Main content */}
@@ -54,6 +55,23 @@ export default function PostListItem({
 
           {/* Content */}
           <Text className="text-white text-[15px] mt-1">{post.content}</Text>
+
+          {post.images && (
+            <View className="flex-row gap-2 mt-2">
+              {post.images.map((img: string) => {
+                return (
+                  <Image
+                    key={img}
+                    source={{
+                      uri: supabase.storage.from("media").getPublicUrl(img).data
+                        .publicUrl,
+                    }}
+                    className="w-full aspect-square rounded-lg"
+                  />
+                );
+              })}
+            </View>
+          )}
 
           {/* Actions */}
           <View className="flex-row gap-4 mt-3 max-w-[80%]">
