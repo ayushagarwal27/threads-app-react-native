@@ -31,7 +31,12 @@ export default function NewPostScreen() {
       if (image) {
         imagePath = await uploadImage();
       }
-      return createPost(text, user as User | null, undefined, [imagePath!]);
+      return createPost(
+        text,
+        user as User | null,
+        undefined,
+        imagePath ? [imagePath!] : undefined
+      );
     },
     onSuccess: () => {
       setText("");
